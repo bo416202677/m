@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.m.dubbo.test.provider.dao.user.IUserDao">
+	<resultMap id="userMap" type="cn.m.dubbo.test.api.model.user.User">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="head_image" property="headImage" jdbcType="VARCHAR" />
+		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+		<result column="personality_signature" property="personalitySignature"
+			jdbcType="VARCHAR" />
+		<result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="getUserByAccount" parameterType="String" resultMap="userMap">
+		select id, account, head_image, nickname, personality_signature, phone_number, create_time
+		from user where account=#{account} limit 1
+	</select>
+</mapper>
